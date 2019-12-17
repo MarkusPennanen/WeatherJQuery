@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="weather.css"
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body onload="defaultWeather()">
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+<div id="appDiv">
+<div>
+<h1>Weather</h1>
+
+  </div>
+  <input id="searchInpt"></input><button id="searchBtn">Search</button>
+  <h2 id = "errortxt">City not found</h2>
+  <div id="wDisplay">
+    <p id="cityN"><br></p>
+    <p id="temp"><br></p>
+    <p id="desc"><br></p>
+    <p id="minmax"><br></p>
+    <p id="humidity"><br></p>
+    <h6 id="icon"><br></h6>
+  </div>
+</div>
+
+
+
+
+  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+  var mainUrl = "https://api.openweathermap.org/data/2.5/weather?q=helsinki&units=metric&mode=JSON&APPID=c706afc24bc0b96f37199fe59e85d093";
+  function defaultWeather() {
+    $.ajax({url: mainUrl, success: function(result){ //Send ajax request
+      var iconUrl = "http://openweathermap.org/img/w/"+result.weather[0].icon+".png" //Set url for weather icon
+      $("#cityN").html(result.name + "<br>"); //Set inner html of selected elements to the weather statistics from api
+      $("#temp").html(result.main.temp + "°C<br>");
+      $("#desc").html(result.weather[0].description) + "<br>";
+      $("#minmax").html(result.main.temp_max+"°C / " + result.main.temp_min + "°C" + "<br>");
+      $("#humidity").html("Humidity  "+result.main.humidity + "<br>");
+      $("#icon").html("<img src="+iconUrl+">");
+    }
+  });
+}
+
+  $(document).ready(function(){ //Wait for page to be fully loaded before running scripts
+    $("#errortxt").hide(); //Hide error text on default
+    $("#searchInpt").click(function() {$("#errortxt").hide();}) //Clicking search bar hides error
+
+    $("button").click(function(){ //When clicking search button run function
+      var citySelect = $("#searchInpt").val(); //Get city name typed on the search bar
+      var newcitySelect = "";
+      for(var i = 0; i<citySelect.length; i++) { //Go through city name characters, change possible äöå to ao
+        if (citySelect[i] == 'ä') {
+          newcitySelect += 'a';
+        }
+        else if (citySelect[i] == 'ö') {
+          newcitySelect += 'o';
+        }
+        else if (citySelect[i] || 'ä' && citySelect[i] || 'ö'){
+          newcitySelect += citySelect[i];
+        }
+      }
+      var url = "https://api.openweathermap.org/data/2.5/weather?q="+newcitySelect+"&units=metric&mode=JSON&APPID=c706afc24bc0b96f37199fe59e85d093";
+      $.ajax({url: url, success: function(result){
+        $("#cityN").fadeOut(1); //Fade out weather statistics
+        $("#temp").fadeOut(1);
+        $("#desc").fadeOut(1);
+        $("#minmax").fadeOut(1);
+        $("#humidity").fadeOut(1);
+        $("#wDisplay").fadeOut(1);
+        var iconUrl = "http://openweathermap.org/img/w/"+result.weather[0].icon+".png"
+        $("#cityN").html(result.name + "<br>"); //Set inner html of selected elements to the weather statistics from api
+        $("#temp").html(result.main.temp + "°C<br>");
+        $("#desc").html(result.weather[0].description) + "<br>";
+        $("#minmax").html(result.main.temp_max+"°C / " + result.main.temp_min + "°C" + "<br>");
+        $("#humidity").html("Humidity  "+result.main.humidity + "<br>");
+        $("#icon").html("<img src="+iconUrl+">");
+
+        $("#cityN").slideDown(800); //Slide in all the weather statistics in order
+        $("#temp").slideDown(1200);
+        $("#desc").slideDown(1600);
+        $("#minmax").slideDown(2000);
+        $("#humidity").slideDown(2400);
+        $("#wDisplay").slideDown(2700);
+
+      },
+    error: function() {$("#errortxt").show();} //If there is an error in the ajax call show error text
+  });
+    });
+
+
+
+
+  });
+
+</script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

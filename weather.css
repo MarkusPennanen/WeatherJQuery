@@ -1,0 +1,100 @@
+#appDiv {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  border-style: outset;
+  margin-top: -50px;
+  margin-left: -100px;
+  padding-top: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 30px;
+  background-color: rgb(253, 253, 253);
+}
+
+body {
+  background-image: url("light2.jpg");
+  background-repeat: no-repeat;
+}
+
+h1 {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 45px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+
+h2 {
+  text-align: center;
+  color: red;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+td {
+  padding-right: 34.5px;
+}
+
+table {
+  font-size: 22px;
+  padding-top: 35px;
+}
+
+#searchInpt {
+  border-radius: 4px;
+  padding-right: 15px;
+  margin-bottom: 10px;
+}
+
+table td:nth-child(odd) {
+  font-weight: bold;
+}
+
+img {
+  position: relative;
+  left: 90px;
+  padding-top: 25px;
+  width: 32%;
+  height: 32%;
+}
+
+button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 17px;
+  opacity: 80%;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+
+p {
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 1px;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+#cityN {
+  font-size: 40px;
+}
+
+#temp {
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+
+#desc {
+  font-size: 18px;
+}
+
+#minmax {
+  font-size: 18px;
+}
+
+#humidity {
+  font-size: 18px;
+}
