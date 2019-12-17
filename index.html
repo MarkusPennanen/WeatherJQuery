@@ -52,7 +52,7 @@
   var mainUrl = "https://api.openweathermap.org/data/2.5/weather?q=helsinki&units=metric&mode=JSON&APPID=c706afc24bc0b96f37199fe59e85d093";
   function defaultWeather() {
     $.ajax({url: mainUrl, success: function(result){ //Send ajax request
-      var iconUrl = "http://openweathermap.org/img/w/"+result.weather[0].icon+".png" //Set url for weather icon
+      var iconUrl = "https://openweathermap.org/img/w/"+result.weather[0].icon+".png" //Set url for weather icon
       $("#cityN").html(result.name + "<br>"); //Set inner html of selected elements to the weather statistics from api
       $("#temp").html(result.main.temp + "°C<br>");
       $("#desc").html(result.weather[0].description) + "<br>";
@@ -89,7 +89,7 @@
         $("#minmax").fadeOut(1);
         $("#humidity").fadeOut(1);
         $("#wDisplay").fadeOut(1);
-        var iconUrl = "http://openweathermap.org/img/w/"+result.weather[0].icon+".png"
+        var iconUrl = "https://openweathermap.org/img/w/"+result.weather[0].icon+".png"
         $("#cityN").html(result.name + "<br>"); //Set inner html of selected elements to the weather statistics from api
         $("#temp").html(result.main.temp + "°C<br>");
         $("#desc").html(result.weather[0].description) + "<br>";
