@@ -97,12 +97,12 @@
         $("#humidity").html("Humidity  "+result.main.humidity + "<br>");
         $("#icon").html("<img src="+iconUrl+">");
 
-        $("#cityN").slideDown(800); //Slide in all the weather statistics in order
-        $("#temp").slideDown(1200);
-        $("#desc").slideDown(1600);
-        $("#minmax").slideDown(2000);
-        $("#humidity").slideDown(2400);
-        $("#wDisplay").slideDown(2700);
+        $("#cityN").slideDown(200); //Slide in all the weather statistics in order
+        $("#temp").slideDown(600);
+        $("#desc").slideDown(1000);
+        $("#minmax").slideDown(1400);
+        $("#humidity").slideDown(1800);
+        $("#wDisplay").slideDown(2200);
 
       },
     error: function() {$("#errortxt").show();} //If there is an error in the ajax call show error text
