@@ -83,12 +83,6 @@
       }
       var url = "https://api.openweathermap.org/data/2.5/weather?q="+newcitySelect+"&units=metric&mode=JSON&APPID=c706afc24bc0b96f37199fe59e85d093";
       $.ajax({url: url, success: function(result){
-        $("#cityN").fadeOut(1); //Fade out weather statistics
-        $("#temp").fadeOut(1);
-        $("#desc").fadeOut(1);
-        $("#minmax").fadeOut(1);
-        $("#humidity").fadeOut(1);
-        $("#wDisplay").fadeOut(1);
         var iconUrl = "https://openweathermap.org/img/w/"+result.weather[0].icon+".png"
         $("#cityN").html(result.name + "<br>"); //Set inner html of selected elements to the weather statistics from api
         $("#temp").html(result.main.temp + "°C<br>");
@@ -97,12 +91,6 @@
         $("#humidity").html("Humidity  "+result.main.humidity + "<br>");
         $("#icon").html("<img src="+iconUrl+">");
 
-        $("#cityN").slideDown(200); //Slide in all the weather statistics in order
-        $("#temp").slideDown(600);
-        $("#desc").slideDown(1000);
-        $("#minmax").slideDown(1400);
-        $("#humidity").slideDown(1800);
-        $("#wDisplay").slideDown(2200);
 
       },
     error: function() {$("#errortxt").show();} //If there is an error in the ajax call show error text
